@@ -1,0 +1,23 @@
+tasks:
+  - name: Setup Android SDK
+    init: |
+      sdkmanager "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
+      echo "sdk.dir=$HOME/Android/Sdk" > local.properties
+    command: |
+      ./gradlew :main:assembleRelease
+
+ports:
+  - port: 6080
+  - port: 5900
+  - port: 5554
+  - port: 5555
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    addCheck: true
+    addComment: false
+    addBadge: true
+    addLabel: false
